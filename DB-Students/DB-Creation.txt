@@ -1,0 +1,1 @@
+CREATE TABLE `alumnos`.`1` (`name` VARCHAR(10) NOT NULL , `dni` VARCHAR(8) NOT NULL , `email` VARCHAR(25) NOT NULL , `codMatricula` VARCHAR(8) NOT NULL , `ciclo` VARCHAR(5) NOT NULL , PRIMARY KEY (`dni`(8))) ENGINE = InnoDB;

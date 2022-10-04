@@ -1,0 +1,2 @@
+INSERT INTO `1` (`name`, `dni`, `email`, `codMatricula`, `ciclo`) VALUES ('yassin', 'D123498', 'yasin@free.fr', 'CS543', '1daw3');
+INSERT INTO `1` (`name`, `dni`, `email`, `codMatricula`, `ciclo`) VALUES ('marouan', 'N8479234', 'marouan@googlr.com', 'cf4543', '2dam3'), ('amin', '7470734N', 'amin@gmail.fr', 'CM478', '2daw3');
