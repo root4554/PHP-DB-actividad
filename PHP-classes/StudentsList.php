@@ -10,7 +10,7 @@
 
 <body>
 
-    <button type="submit">ADD +</button>
+    <a href="insert-student.php"> <button> ADD + </button> </a>
 
     <?php
     $mysqli = new mysqli("localhost", "root", "", "alumnos");
@@ -29,11 +29,12 @@
         echo "</div>";
         echo '<h1 name="nombre">' . $student["Nombre"] . '</h1>';
         echo '<p name="ciclo">' . $student["Ciclo"] . '</p>';
-        echo "<button id='show' name='show'>Show Student</button>";
-        echo "<button id'show' name='delete'>Delete</button>";
+        echo '<br>';
+        echo "<a href 'show-student.php?DNI=$student[DNI]>'<button id='show' name='show'>Show Student</button></a>";
         echo "</div>";
         echo "<br>";
     }
+
     ?>
 </body>
 
