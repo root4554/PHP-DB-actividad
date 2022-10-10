@@ -22,15 +22,11 @@
     $studentsList = $mysqli->query("SELECT * FROM Alumno");
 
     while ($student = $studentsList->fetch_array()) {
-        // echo $student['nombre'] . " " . $student['dni'] . "<br>";
+        $dni = $student["DNI"];
         echo "<div class='student'>";
-        echo "<div class='student-pres'>";
-        echo "<p>" . $student['nombre'] . "</p>";
-        echo "</div>";
         echo '<h1 name="nombre">' . $student["Nombre"] . '</h1>';
         echo '<p name="ciclo">' . $student["Ciclo"] . '</p>';
-        echo '<br>';
-        echo "<a href 'show-student.php?DNI=$student[DNI]>'<button id='show' name='show'>Show Student</button></a>";
+        echo "<a href='show-student.php?DNI=$dni'><button type='submit' id='show' name='show'>Show Student</button></a>";
         echo "</div>";
         echo "<br>";
     }
