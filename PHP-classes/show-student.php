@@ -16,62 +16,55 @@
         echo "<script> alert('Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ")</script>' " . $mysqli->connect_error;
     }
     $DNI = $_GET['DNI'];
-
     // Show DB student
     $student = $mysqli->query("SELECT Nombre, DNI, Email, CodMatricula, Ciclo FROM Alumno WHERE DNI  = '$DNI' ")->fetch_assoc();
+    ?>
 
-    echo "<form method='POST'>";
-    echo "<label for='nombre'>Nombre</label>";
-    echo "<input type='text' required name='nombre' value='" . $student["Nombre"] . "'>";
-    echo "<br>";
-    echo "<label for='dni'>DNI</label>";
-    echo "<input type='text' disabled name='dni' value='" . $student["DNI"] . "'>";
-    echo "<br>";
-    echo "<label for='email'>Email</label>";
-    echo "<input type='text' required name='email' value='" . $student["Email"] . "'>";
-    echo "<br>";
-    echo "<label for='codMatricula'>CodMatricula</label>";
-    echo "<input type='text' required name='codMatricula' value='" . $student["CodMatricula"] . "'>";
-    echo "<br>";
-    echo "<label for='ciclo'>Ciclo</label>";
-    echo "<input type='text' required name='ciclo' value='" . $student["Ciclo"] . "'>";
-    echo "<br>";
-    echo "<button type='submit' id='update' value='update' name='accion'>Update Student</button>";
-    echo "<button type='submit' id='delete' value='delete' name='accion'>Delete Student</button>";
-    echo "</form>";
+    <form method="POST">
+        <label for='nombre'>Nombre</label>
+        <input name="nombre" value="<?php echo $student['Nombre'] ?>" required>
+        <label for='dni'>DNI</label>
+        <input name="DNI" value="<?php echo $student['DNI'] ?>" disabled required>
+        <label for='email'>Email</label>
+        <input name="email" value="<?php echo $student['Email'] ?>" required>
+        <label for='codMatricula'>CodMatricula</label>
+        <input name="codMatricula" value="<?php echo $student['CodMatricula'] ?>" required>
+        <label for='ciclo'>Ciclo</label>
+        <input name="ciclo" value="<?php echo $student['Ciclo'] ?>" required>
+        <button type="submit" id="update" value='Update' name='accion'>Update</button>
+        <button type="submit" id="delete" value='Delete' name='accion'>Delete</button>
+    </form>
 
-    // Update student
+    <?php
+    // Update students
     function updateStudent($mysqli, $DNI)
     {
-        if (isset($_POST['nombre']) && isset($_POST['DNI']) && isset($_POST['email']) && isset($_POST['codMatricula']) && isset($_POST['ciclo'])) {
-            $nombre = $_POST['nombre'];
-            $dni = $_POST['dni'];
-            $email = $_POST['email'];
-            $codMatricula = $_POST['codMatricula'];
-            $ciclo = $_POST['ciclo'];
+        $nombre = $_POST['nombre'];
+        $email = $_POST['email'];
+        $codMatricula = $_POST['codMatricula'];
+        $ciclo = $_POST['ciclo'];
 
-            $mysqli->query("UPDATE Alumno SET Nombre = '$nombre', DNI = '$dni', Email = '$email', CodMatricula = '$codMatricula', Ciclo = '$ciclo' WHERE DNI = '$DNI' ");
-            echo "<script>alert('el alumno ha editado correctamente')</script>";
-            header("Location: StudentsList.php");
-        }
+        $mysqli->query("UPDATE Alumno SET Nombre = '$nombre', DNI = '$DNI', Email = '$email', CodMatricula ='$codMatricula', Ciclo = '$ciclo' WHERE DNI = '$DNI' ");
+        echo '<script> alert("el alumno ha editado correctamente")</script>';
+        header("Location: StudentsList.php");
     }
-
 
     // Remove Student
     function removeStudent($mysqli, $DNI)
     {
-        if (isset($_POST['nombre']) && isset($_POST['DNI']) && isset($_POST['email']) && isset($_POST['codMatricula']) && isset($_POST['ciclo'])) {
-            $mysqli->query("DELETE FROM Alumno WHERE DNI = '$DNI' ");
-            echo "<script>alert('el alumno ha sido eliminado correctamente')</script>";
-            header("Location: StudentsList.php");
-        }
+        $mysqli->query("DELETE FROM Alumno WHERE DNI = '$DNI' ");
+        echo '<script>
+        alert("Has eliminado el alumno correctamente")");
+        window.location.href="StudentsList.php";
+        </script>';
+        // header("Location: ");
     }
     $accion = $_POST['accion'] ?? null;
     switch ($accion) {
-        case 'update':
+        case 'Update':
             updateStudent($mysqli, $DNI);
             break;
-        case 'delete':
+        case 'Delete':
             removeStudent($mysqli, $DNI);
             break;
     }
