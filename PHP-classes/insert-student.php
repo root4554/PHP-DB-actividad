@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: loginform.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +37,6 @@
 
     </form>
     <?php
-
     if (isset($_POST['nombre']) && isset($_POST['DNI']) && isset($_POST['email']) && isset($_POST['codMatricula']) && isset($_POST['ciclo'])) {
 
         $Nombre = $_POST['nombre'];

@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: loginform.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +39,8 @@
         echo "</div>";
         echo "<br>";
     }
-
     ?>
+    <a href="logout.php">logout</a>
 </body>
 
 </html>
